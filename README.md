@@ -57,44 +57,38 @@
 
 ## Архитектура
 
-InstallBindings (Zenject / MonoInstaller)
-│
-├─ Models
-│ ├─ LivingEntity (базовый класс для здоровья)
-│ ├─ Player (LivingEntity)
-│ ├─ Enemy (LivingEntity)
-│ ├─ Inventory (модель массива Item[], событие InventoryChanged)
-│ ├─ Ammo (модель патронов, событие AmmoCountChanged)
-│ ├─ Bullet (моноскрипт, представляет пулю, возвращается в пул)
-│ └─ BulletPool (обёртка для пула объектов Bullet)
-│
-├─ Services
-│ ├─ InputService (горизонталь/вертикаль, Fire1, поддержка джойстика)
-│ ├─ InventoryService (логика инвентаря + сохранение/загрузка)
-│ ├─ AmmoService (логика патронов + сохранение/загрузка)
-│ ├─ EnemyAIService (управление логикой врага: Rotation/Movement/Attack)
-│ └─ FilePersistenceService (IPersistenceService → JSON в Application.persistentDataPath)
-│
-├─ Controllers
-│ ├─ PlayerController (ITickable, связывает Player ↔ PlayerView ↔ HealthView(UI) ↔ WeaponView ↔ InventoryView ↔ AmmoController )
-│ │ └─ HandleMovement, HandleShooting, UpdateHealth UI, перезагрузка сцены при смерти
-│ ├─ InventoryController (InventoryService ↔ InventoryView: Toggle, Remove, RebuildSlots)
-│ ├─ AmmoController (AmmoService ↔ InventoryService ↔ InventoryView: синхронизация, UI-патронов)
-│ └─ EnemySpawner (MonoBehaviour, Zenject-спавн врагов в заданной зоне)
-│
-├─ Views
-│ ├─ PlayerView (MonoBehaviour, Rigidbody2D + Animator + методы SetVelocity, SetWalkDirection, PlayAttack)
-│ ├─ EnemyView (MonoBehaviour, Collider2D, HealthView (World Space), TakeDamage, OnDied → дроп предмета)
-│ ├─ WeaponView (MonoBehaviour, инициализация пула, метод Shoot)
-│ ├─ HealthView (MonoBehaviour с Canvas, обновление Slider; RenderMode настраивается через инспектор)
-│ ├─ InventoryView (MonoBehaviour, UI-панель с кнопкой Toggle, слоты InventorySlotView, текст патронов)
-│ ├─ InventorySlotView (UI-ячейка, Icon + CountText + RemoveButton)
-│ ├─ SimpleJoystick (MonoBehaviour, UI-джойстик, реализует IJoystick)
-│ └─ ItemPickup (MonoBehaviour + Collider2D, при OnTriggerEnter2D добавляет Item или Ammo)
-│
-└─ Configs (ScriptableObject)
-└─ PlayerConfig (скорость, MaxHealth, BulletPrefab, пул, урон, скорость, время жизни, ShootRange, EnemyLayerMask)
-
+- **InstallBindings (Zenject / MonoInstaller)**
+  - **Models**
+    - `LivingEntity`  – базовый класс для здоровья
+    - `Player`       – наследник `LivingEntity`
+    - `Enemy`        – наследник `LivingEntity`
+    - `Inventory`    – модель массива `Item[]`, событие `InventoryChanged`
+    - `Ammo`         – модель патронов, событие `AmmoCountChanged`
+    - `Bullet`       – MonoBehaviour, представляет пулю, возвращается в пул
+    - `BulletPool`   – обёртка для пула объектов `Bullet`
+  - **Services**
+    - `InputService`           – горизонталь/вертикаль, `Fire1`, поддержка джойстика
+    - `InventoryService`        – логика инвентаря + сохранение/загрузка
+    - `AmmoService`             – логика патронов + сохранение/загрузка
+    - `EnemyAIService`          – управление логикой врага: Rotation/Movement/Attack
+    - `FilePersistenceService` – `IPersistenceService` → JSON в `Application.persistentDataPath`
+  - **Controllers**
+    - `PlayerController`  (ITickable, связывает `Player` ↔ `PlayerView` ↔ `HealthView(UI)` ↔ `WeaponView` ↔ `InventoryView` ↔ `AmmoController`)  
+      └─ `HandleMovement`, `HandleShooting`, `UpdateHealth` UI, перезагрузка сцены при смерти  
+    - `InventoryController` (связывает `InventoryService` ↔ `InventoryView`: Toggle, Remove, RebuildSlots)  
+    - `AmmoController`       (`AmmoService` ↔ `InventoryService` ↔ `InventoryView`: синхронизация, UI-патронов)  
+    - `EnemySpawner`        (MonoBehaviour, Zenject-спавн врагов в заданной зоне)
+  - **Views**
+    - `PlayerView`            (MonoBehaviour, `Rigidbody2D` + `Animator` + методы `SetVelocity`, `SetWalkDirection`, `PlayAttack`)
+    - `EnemyView`             (MonoBehaviour, `Collider2D`, `HealthView (World Space)`, `TakeDamage`, `OnDied` → дроп предмета)
+    - `WeaponView`            (MonoBehaviour, инициализация пула, метод `Shoot`)
+    - `HealthView`            (MonoBehaviour с `Canvas`, обновление `Slider`; RenderMode настраивается через инспектор)
+    - `InventoryView`         (MonoBehaviour, UI-панель с кнопкой Toggle, слоты `InventorySlotView`, текст патронов)
+    - `InventorySlotView`     (UI-ячейка, Icon + CountText + RemoveButton)
+    - `SimpleJoystick`        (MonoBehaviour, UI-джойстик, реализует `IJoystick`)
+    - `ItemPickup`            (MonoBehaviour + `Collider2D`, при `OnTriggerEnter2D` добавляет `Item` или `Ammo`)
+  - **Configs (ScriptableObject)**
+    - `PlayerConfig` – скорость, MaxHealth, `BulletPrefab`, пул, урон, скорость, время жизни, `ShootRange`, `EnemyLayerMask`
 ---
 
 ## Использованные инструменты и подходы
