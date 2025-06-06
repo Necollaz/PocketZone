@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137e8a70081043e2811be7c467712f58, type: 3}
+  m_Name: PlayerConfig
+  m_EditorClassIdentifier: 
+  _speed: 8
+  _maxHealth: 100
+  _bulletPrefab: {fileID: 2919643418434039792, guid: 7736fc0b484c1e7449fd8773cc029b08, type: 3}
+  _bulletPoolSize: 20
+  _shootCooldown: 0.5
+  _shootRange: 12
+  _enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  _bulletDamage: 20
+  _bulletSpeed: 30
+  _bulletLifetime: 3
