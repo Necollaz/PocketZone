@@ -1,5 +1,6 @@
 using UnityEngine;
 using _Project.Scripts.Data;
+using _Project.Scripts.Models.PlayerComponents;
 
 namespace _Project.Scripts.Models.EnemyModel.Features
 {
@@ -44,7 +45,7 @@ namespace _Project.Scripts.Models.EnemyModel.Features
             rigidbody2D.velocity = Vector2.zero;
             
             animator.SetBool(CharacterAnimationParams.WalkingEnemy, false);
-            animator.SetTrigger(CharacterAnimationParams.Attack);
+            animator.SetTrigger(CharacterAnimationParams.EnemyAttack);
         }
         
         public void EndAttack()

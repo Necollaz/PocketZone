@@ -1,5 +1,4 @@
 using UnityEngine;
-using _Project.Scripts.Models.InventoryModel.Items;
 
 namespace _Project.Scripts.Data.Configs
 {
@@ -13,7 +12,6 @@ namespace _Project.Scripts.Data.Configs
         [SerializeField] private int _maxHealth = 100;
         
         [Header("Shooting")]
-        [SerializeField] private Bullet _bulletPrefab;
         [SerializeField] private int _bulletPoolSize = 20;
         [SerializeField] private float _shootCooldown = 0.5f;
         [SerializeField] private float _shootRange = 8f;
@@ -24,7 +22,6 @@ namespace _Project.Scripts.Data.Configs
         [SerializeField] private float _bulletSpeed = 8f;
         [SerializeField] private float _bulletLifetime = 3f;
         
-        public Bullet BulletPrefab => _bulletPrefab;
         public LayerMask EnemyLayerMask => _enemyLayerMask;
         public int MaxHealth => _maxHealth;
         public int BulletPoolSize => _bulletPoolSize;

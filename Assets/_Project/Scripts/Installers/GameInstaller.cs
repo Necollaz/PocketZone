@@ -6,6 +6,7 @@ using _Project.Scripts.Interfaces;
 using _Project.Scripts.Models;
 using _Project.Scripts.Models.InventoryModel;
 using _Project.Scripts.Models.InventoryModel.Items;
+using _Project.Scripts.Models.PlayerComponents;
 using _Project.Scripts.SaveFuatures;
 using _Project.Scripts.Services;
 using _Project.Scripts.UI;
@@ -39,22 +40,27 @@ namespace _Project.Scripts.Installers
             Container.Bind<PlayerView>().FromInstance(_playerView).AsSingle();
             Container.Bind<HealthView>().FromInstance(_healthView).AsSingle();
             Container.Bind<WeaponView>().FromInstance(_weaponView).AsSingle();
-
+            Container.Bind<InventoryView>().FromInstance(_inventoryView).AsSingle();
+            
             Container.Bind<IJoystick>().FromInstance(_joystick).AsSingle();
             Container.Bind<InputService>().AsSingle();
-            
-            Container.BindInterfacesAndSelfTo<PlayerController>().AsSingle().NonLazy();
-            
             Container.Bind<IPersistenceService>().To<FilePersistenceService>().AsSingle();
             
             Container.Bind<Inventory>().FromInstance(new Inventory(_maxSlotsInventory)).AsSingle();
             Container.Bind<InventoryService>().AsSingle();
-            Container.Bind<InventoryView>().FromInstance(_inventoryView).AsSingle();
-            Container.BindInterfacesAndSelfTo<InventoryController>().AsSingle().NonLazy();
             
             Container.Bind<Ammo>().FromInstance(new Ammo(_initialAmmoCount)).AsSingle();
             Container.Bind<AmmoService>().AsSingle();
+            
+            Container.BindInterfacesAndSelfTo<PlayerMovement>().AsSingle().NonLazy();
+            Container.Bind<AimCalculator>().AsSingle();
+            Container.BindInterfacesAndSelfTo<Shooting>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PlayerHealth>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<DeathHandler>().AsSingle().NonLazy();
+            
+            Container.BindInterfacesAndSelfTo<InventoryController>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<AmmoController>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<InventoryAmmoSyncService>().AsSingle().NonLazy();
         }
     }
 }

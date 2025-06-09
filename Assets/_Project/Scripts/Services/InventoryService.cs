@@ -7,7 +7,7 @@ using _Project.Scripts.Models.InventoryModel.Items;
 
 namespace _Project.Scripts.Services
 {
-    public class InventoryService
+    public class InventoryService 
     {
         private const string SaveFileName = "inventory_save.json";
 
@@ -28,13 +28,13 @@ namespace _Project.Scripts.Services
 
         public void AddItem(Item item)
         {
-            if (_inventory.AddItem(item))
+            if (_inventory.TryAddItem(item))
                 InventoryChanged?.Invoke(_inventory.GetAllSlots());
         }
 
         public void RemoveItem(int slotIndex)
         {
-            _inventory.RemoveItem(slotIndex);
+            _inventory.TryRemoveItem(slotIndex);
             
             InventoryChanged?.Invoke(_inventory.GetAllSlots());
         }
@@ -53,7 +53,7 @@ namespace _Project.Scripts.Services
                     
                     if (slotItem.StackSize <= 0)
                     {
-                        _inventory.RemoveItem(i);
+                        _inventory.TryRemoveItem(i);
                     }
                     
                     InventoryChanged?.Invoke(_inventory.GetAllSlots());
@@ -83,23 +83,24 @@ namespace _Project.Scripts.Services
             
             for (int i = 0; i < _inventory.MaxSlots; i++)
             {
-                _inventory.RemoveItem(i);
+                _inventory.TryRemoveItem(i);
             }
             
-            foreach (SlotData slotData in inventorySaveData.Slots)
+            for (int i = 0; i < inventorySaveData.Slots.Length; i++)
             {
-                if (slotData != null)
-                {
-                    Sprite icon = Resources.Load<Sprite>("Icons/" + slotData.Id);
-                    
-                    if (icon == null)
-                    {
-                        continue;
-                    }
+                SlotData slotData = inventorySaveData.Slots[i];
+                
+                if (string.IsNullOrEmpty(slotData.Id))
+                    continue;
+            
+                Sprite icon = Resources.Load<Sprite>("Icons/" + slotData.Id);
+                
+                if (icon == null)
+                    continue;
 
-                    Item item = new Item(slotData.Id, icon, slotData.StackSize);
-                    bool added = _inventory.AddItem(item);
-                }
+                Item item = new Item(slotData.Id, icon, slotData.StackSize);
+                
+                _inventory.TryAddItem(item);
             }
             
             InventoryChanged?.Invoke(_inventory.GetAllSlots());

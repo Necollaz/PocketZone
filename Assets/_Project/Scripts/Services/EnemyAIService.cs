@@ -2,6 +2,7 @@ using UnityEngine;
 using _Project.Scripts.Data;
 using _Project.Scripts.Models;
 using _Project.Scripts.Models.EnemyModel.Features;
+using _Project.Scripts.Models.PlayerComponents;
 
 namespace _Project.Scripts.Services
 {

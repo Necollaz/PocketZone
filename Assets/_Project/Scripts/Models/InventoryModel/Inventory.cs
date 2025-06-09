@@ -22,38 +22,44 @@ namespace _Project.Scripts.Models.InventoryModel
             return _slots;
         }
         
-        public bool AddItem(Item newItem)
+        public bool TryAddItem(Item newItem)
         {
+            int firstEmptyIndex = -1;
+
             for (int i = 0; i < MaxSlots; i++)
             {
                 Item slot = _slots[i];
-                
-                if (slot != null && slot.Id == newItem.Id)
+
+                if (slot != null)
                 {
-                    slot.Add(newItem.StackSize);
-                    
-                    InventoryChanged?.Invoke(_slots);
-                    
-                    return true;
+                    if (slot.Id == newItem.Id)
+                    {
+                        slot.Add(newItem.StackSize);
+                        
+                        InventoryChanged?.Invoke(_slots);
+                        
+                        return true;
+                    }
+                }
+                else if (firstEmptyIndex < 0)
+                {
+                    firstEmptyIndex = i;
                 }
             }
-            
-            for (int i = 0; i < MaxSlots; i++)
+
+            if (firstEmptyIndex >= 0)
             {
-                if (_slots[i] == null)
-                {
-                    _slots[i] = new Item(newItem.Id, newItem.Icon, newItem.StackSize);
-                    
-                    InventoryChanged?.Invoke(_slots);
-                    
-                    return true;
-                }
+                _slots[firstEmptyIndex] = new Item(newItem.Id, newItem.Icon, newItem.StackSize);
+                
+                InventoryChanged?.Invoke(_slots);
+                
+                return true;
             }
-            
+
             return false;
         }
         
-        public bool RemoveItem(int slotIndex)
+        public bool TryRemoveItem(int slotIndex)
         {
             if (slotIndex < 0 || slotIndex >= MaxSlots)
                 return false;
