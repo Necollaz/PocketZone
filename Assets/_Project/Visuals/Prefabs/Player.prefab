@@ -422,8 +422,8 @@ MonoBehaviour:
   - {fileID: 2082552780963385683}
   - {fileID: 2435778628360063778}
   m_Bounds:
-    m_Center: {x: 0.020125002, y: -0.26744592, z: 0}
-    m_Extent: {x: 0.19862503, y: 0.2242657, z: 0}
+    m_Center: {x: 0.020125002, y: -0.267446, z: 0}
+    m_Extent: {x: 0.19862503, y: 0.22426566, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -637,8 +637,8 @@ MonoBehaviour:
   - {fileID: 7892462557227916960}
   - {fileID: 2844663012558442145}
   m_Bounds:
-    m_Center: {x: 0.000000022351742, y: -0.21874997, z: 0}
-    m_Extent: {x: 0.06250002, y: 0.21874997, z: 0}
+    m_Center: {x: -0.0000018626451, y: -0.21874908, z: 0}
+    m_Extent: {x: 0.062500045, y: 0.21875003, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -779,7 +779,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2053449247
   m_SortingLayer: 7
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 6532bc2c52f179142a7333cc0f5faeda, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1131,8 +1131,8 @@ MonoBehaviour:
   - {fileID: 8969666609042400494}
   - {fileID: 5337502755317535490}
   m_Bounds:
-    m_Center: {x: -0.000000007450581, y: -0.390625, z: 0}
-    m_Extent: {x: 0.078125015, y: 0.390625, z: 0}
+    m_Center: {x: -0.0000009611249, y: -0.39062524, z: 0}
+    m_Extent: {x: 0.078125946, y: 0.39062476, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -1392,8 +1392,8 @@ MonoBehaviour:
   - {fileID: 9143995683376594460}
   - {fileID: 6314625393268074400}
   m_Bounds:
-    m_Center: {x: 0.000000014901161, y: -0.21875, z: 0}
-    m_Extent: {x: 0.06250003, y: 0.21875, z: 0}
+    m_Center: {x: 0.000001937151, y: -0.2187481, z: 0}
+    m_Extent: {x: 0.062500045, y: 0.21875, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -1406,9 +1406,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7690534363079018390}
-  - component: {fileID: 4182748172744488396}
+  - component: {fileID: 2228188774290771904}
   - component: {fileID: 9184241877781752352}
-  - component: {fileID: 7199868754938925870}
+  - component: {fileID: 1144929946629554201}
   - component: {fileID: 6512785210599621782}
   m_Layer: 0
   m_Name: Player
@@ -1435,7 +1435,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &4182748172744488396
+--- !u!95 &2228188774290771904
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -1476,8 +1476,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!70 &7199868754938925870
+  m_Constraints: 4
+--- !u!70 &1144929946629554201
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1505,6 +1505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff0dfa95c8874ca988b82c98376081d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _graphicsRoot: {fileID: 7690534363079018390}
   _healthSlider: {fileID: 4493591649167736577}
   _healthCanvas: {fileID: 5540254845350251313}
 --- !u!1 &8304230097293433680
@@ -1758,8 +1759,8 @@ MonoBehaviour:
   - {fileID: 7383385176700121772}
   - {fileID: 6481774251848525783}
   m_Bounds:
-    m_Center: {x: 0.0026926398, y: 0.062124997, z: 0}
-    m_Extent: {x: 0.3117032, y: 0.49962506, z: 0}
+    m_Center: {x: 0.002692461, y: 0.062124968, z: 0}
+    m_Extent: {x: 0.31170303, y: 0.49962503, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 1
@@ -1866,8 +1867,8 @@ MonoBehaviour:
   - {fileID: 8262765159786500640}
   - {fileID: 1073443557565136276}
   m_Bounds:
-    m_Center: {x: 0.003489621, y: -0.39062512, z: 0}
-    m_Extent: {x: 0.07812515, y: 0.39062512, z: 0}
+    m_Center: {x: 0.0034887865, y: -0.39062512, z: 0}
+    m_Extent: {x: 0.07812526, y: 0.39062512, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0

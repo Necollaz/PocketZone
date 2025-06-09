@@ -1,6 +1,7 @@
 using UnityEngine;
 using Zenject;
 using _Project.Scripts.Models.EnemyModel.Features;
+using _Project.Scripts.Models.PlayerComponents;
 using _Project.Scripts.Services;
 using _Project.Scripts.Views;
 

@@ -6,7 +6,7 @@ namespace _Project.Scripts.Models
     {
         private int _currentHealth;
 
-        public int MaxHealth { get; protected set; }
+        public int MaxHealth { get; }
         public int CurrentHealth => _currentHealth;
 
         public event Action<int> HealthChanged;
@@ -16,11 +16,9 @@ namespace _Project.Scripts.Models
         {
             MaxHealth = maxHealth;
             _currentHealth = maxHealth;
-            
-            HealthChanged?.Invoke(_currentHealth);
         }
 
-        public virtual void TakeDamage(int amount)
+        public void TakeDamage(int amount)
         {
             if (_currentHealth <= 0)
                 return;
@@ -32,14 +30,5 @@ namespace _Project.Scripts.Models
             if (_currentHealth == 0)
                 Died?.Invoke();
         }
-
-        public virtual void ResetHealth()
-        {
-            _currentHealth = MaxHealth;
-            
-            HealthChanged?.Invoke(_currentHealth);
-        }
-        
-        public bool IsDead => _currentHealth <= 0;
     }
 }

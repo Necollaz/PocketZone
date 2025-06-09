@@ -36,21 +36,5 @@ namespace _Project.Scripts.Services
             
             _persistence.SaveToFile(_saveFileName, json);
         }
-
-        public void Load()
-        {
-            if (!_persistence.FileExists(_saveFileName))
-                return;
-            
-            string json = _persistence.LoadFromFile(_saveFileName);
-            AmmoSaveData data = JsonUtility.FromJson<AmmoSaveData>(json);
-            
-            int diff = data.CurrentAmmo - _ammo.CurrentAmmo;
-            
-            if (diff > 0)
-                _ammo.Add(diff);
-            else if (diff < 0)
-                _ammo.Use(-diff);
-        }
     }
 }

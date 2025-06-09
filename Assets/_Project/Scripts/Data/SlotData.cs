@@ -3,7 +3,7 @@ using System;
 namespace _Project.Scripts.Data
 {
     [Serializable]
-    public class SlotData
+    public struct SlotData
     {
         public string Id;
         public int StackSize;

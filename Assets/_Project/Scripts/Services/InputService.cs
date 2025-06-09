@@ -9,15 +9,13 @@ namespace _Project.Scripts.Services
         private const string VerticalAxis = "Vertical";
         private const string HorizontalAxis = "Horizontal";
         private const string FireButton = "Fire1";
-
-        private readonly Camera _camera;
+        
         private readonly IJoystick _joystick;
 
         [Inject]
         public InputService(IJoystick joystick)
         {
             _joystick = joystick;
-            _camera = Camera.main;
         }
 
         public Vector2 GetMovement()

@@ -4,7 +4,7 @@ using _Project.Scripts.Models.InventoryModel.Items;
 namespace _Project.Scripts.Data
 {
     [Serializable]
-    public class InventorySaveData
+    public struct InventorySaveData
     {
         public SlotData[] Slots;
 
@@ -17,9 +17,17 @@ namespace _Project.Scripts.Data
                 Item item = slots[i];
                 
                 if (item != null)
-                    Slots[i] = new SlotData { Id = item.Id, StackSize = item.StackSize };
+                {
+                    Slots[i] = new SlotData
+                    {
+                        Id = item.Id,
+                        StackSize = item.StackSize
+                    };
+                }
                 else
-                    Slots[i] = null;
+                {
+                    Slots[i] = default;
+                }
             }
         }
     }

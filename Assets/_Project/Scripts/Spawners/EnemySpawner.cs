@@ -11,13 +11,7 @@ namespace _Project.Scripts.Spawners
         [SerializeField] private Vector2 _spawnAreaMax;
         [SerializeField] private int _monstersCount;
         
-        private DiContainer _container;
-        
-        [Inject]
-        public void Construct(DiContainer container)
-        {
-            _container = container;
-        }
+        [Inject] private DiContainer _container;
 
         private void Start()
         {

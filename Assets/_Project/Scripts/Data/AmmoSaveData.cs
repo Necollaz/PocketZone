@@ -3,7 +3,7 @@ using System;
 namespace _Project.Scripts.Data
 {
     [Serializable]
-    public class AmmoSaveData
+    public struct AmmoSaveData
     {
         public int CurrentAmmo;
     }

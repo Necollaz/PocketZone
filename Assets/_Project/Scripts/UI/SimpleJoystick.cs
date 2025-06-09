@@ -21,7 +21,7 @@ namespace _Project.Scripts.UI
         {
             _canvasGroup = GetComponent<CanvasGroup>();
 
-            _canvasGroup.alpha = 0f;
+            _canvasGroup.alpha = 1f;
             _canvasGroup.interactable = true;
             _canvasGroup.blocksRaycasts = true;
         }
@@ -33,18 +33,14 @@ namespace _Project.Scripts.UI
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            _canvasGroup.alpha = 1f;
-
             OnDrag(eventData);
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            Vector2 localPoint;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(_backgroundImage.rectTransform, eventData.position, eventData.pressEventCamera, out Vector2 localPoint);
             
-            bool inside = RectTransformUtility.ScreenPointToLocalPointInRectangle(_backgroundImage.rectTransform, eventData.position, eventData.pressEventCamera, out localPoint);
             Vector2 clamped = Vector2.ClampMagnitude(localPoint, _backgroundRadius);
-
             _inputVector = clamped;
             _handleImage.rectTransform.anchoredPosition = clamped;
         }
@@ -53,7 +49,6 @@ namespace _Project.Scripts.UI
         {
             _inputVector = Vector2.zero;
             _handleImage.rectTransform.anchoredPosition = Vector2.zero;
-            _canvasGroup.alpha = 0f;
         }
     }
 }
