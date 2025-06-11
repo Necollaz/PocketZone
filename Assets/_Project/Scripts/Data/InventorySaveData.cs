@@ -1,5 +1,5 @@
 using System;
-using _Project.Scripts.Models.InventoryModel.Items;
+using _Project.Scripts.Inventory.Model.Items;
 
 namespace _Project.Scripts.Data
 {

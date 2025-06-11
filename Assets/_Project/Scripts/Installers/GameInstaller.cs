@@ -1,16 +1,19 @@
 using UnityEngine;
 using Zenject;
-using _Project.Scripts.Controllers;
+using _Project.Scripts.Common;
+using _Project.Scripts.Common.Interfaces;
 using _Project.Scripts.Data.Configs;
-using _Project.Scripts.Interfaces;
-using _Project.Scripts.Models;
-using _Project.Scripts.Models.InventoryModel;
-using _Project.Scripts.Models.InventoryModel.Items;
-using _Project.Scripts.Models.PlayerComponents;
-using _Project.Scripts.SaveFuatures;
-using _Project.Scripts.Services;
-using _Project.Scripts.UI;
-using _Project.Scripts.Views;
+using _Project.Scripts.Inventory.Controller;
+using _Project.Scripts.Inventory.Model;
+using _Project.Scripts.InventoryComponents.View;
+using _Project.Scripts.Player.Model;
+using _Project.Scripts.Player.Model.Features;
+using _Project.Scripts.Player.View;
+using _Project.Scripts.PlayerInput;
+using _Project.Scripts.PlayerInput.View;
+using _Project.Scripts.Weapon.Controller;
+using _Project.Scripts.Weapon.Model;
+using _Project.Scripts.Weapon.View;
 
 namespace _Project.Scripts.Installers
 {
@@ -35,7 +38,7 @@ namespace _Project.Scripts.Installers
             Container.Bind<Camera>().FromInstance(_mainCamera).AsSingle();
             
             Container.Bind<PlayerConfig>().FromInstance(_playerConfig).AsSingle();
-            Container.Bind<Player>().AsSingle().WithArguments(_playerConfig.Speed, _playerConfig.MaxHealth);
+            Container.Bind<PlayerModel>().AsSingle().WithArguments(_playerConfig.Speed, _playerConfig.MaxHealth);
 
             Container.Bind<PlayerView>().FromInstance(_playerView).AsSingle();
             Container.Bind<HealthView>().FromInstance(_healthView).AsSingle();
@@ -44,9 +47,9 @@ namespace _Project.Scripts.Installers
             
             Container.Bind<IJoystick>().FromInstance(_joystick).AsSingle();
             Container.Bind<InputService>().AsSingle();
-            Container.Bind<IPersistenceService>().To<FilePersistenceService>().AsSingle();
+            Container.Bind<IDataStorageService>().To<FileDataStorageService>().AsSingle();
             
-            Container.Bind<Inventory>().FromInstance(new Inventory(_maxSlotsInventory)).AsSingle();
+            Container.Bind<InventoryModel>().FromInstance(new InventoryModel(_maxSlotsInventory)).AsSingle();
             Container.Bind<InventoryService>().AsSingle();
             
             Container.Bind<Ammo>().FromInstance(new Ammo(_initialAmmoCount)).AsSingle();

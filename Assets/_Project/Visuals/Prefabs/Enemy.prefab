@@ -894,7 +894,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4638405048224587374}
-  - component: {fileID: 6634351387021945801}
+  - component: {fileID: 559317450435485629}
   - component: {fileID: 5247538264027951376}
   - component: {fileID: 4273536298457930106}
   - component: {fileID: -5339911185420400416}
@@ -923,7 +923,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &6634351387021945801
+--- !u!95 &559317450435485629
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -957,8 +957,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0009947419, y: -0.057697445}
-  m_Size: {x: 0.53382266, y: 0.5583157}
+  m_Offset: {x: 0.036515057, y: -0.045655727}
+  m_Size: {x: 0.58981156, y: 0.58981156}
   m_Direction: 0
 --- !u!50 &4273536298457930106
 Rigidbody2D:
@@ -1010,8 +1010,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackDamage: 10
   _attackCooldown: 1
-  _detectionRadius: 10
   _attackDistance: 2
+  _detectionRadius: 10
   _moveSpeed: 6
 --- !u!1 &4912998591793599598
 GameObject:
